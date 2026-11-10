@@ -1,0 +1,8 @@
+<Solution>
+  <Project Path="ApprovalService/ApprovalService.csproj" />
+  <Project Path="NotificationService/NotificationService.csproj" />
+  <Project Path="RequestService/RequestService.csproj" />
+  <Project Path="Shared.Contracts/Shared.Contracts.csproj" />
+  <Project Path="Shared.Observability/Shared.Observability.csproj" />
+  <Project Path="WorkflowService/WorkflowService.csproj" />
+</Solution>

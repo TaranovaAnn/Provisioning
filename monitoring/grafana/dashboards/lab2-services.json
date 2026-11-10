@@ -1,0 +1,102 @@
+{
+  "annotations": { "list": [] },
+  "editable": true,
+  "fiscalYearStartMonth": 0,
+  "graphTooltip": 1,
+  "id": null,
+  "links": [],
+  "panels": [
+    {
+      "datasource": { "type": "prometheus", "uid": "prometheus" },
+      "fieldConfig": {
+        "defaults": {
+          "mappings": [
+            { "options": { "0": { "color": "red", "text": "DOWN" }, "1": { "color": "green", "text": "UP" } }, "type": "value" }
+          ],
+          "thresholds": { "mode": "absolute", "steps": [{ "color": "red", "value": null }, { "color": "green", "value": 1 }] },
+          "unit": "none"
+        },
+        "overrides": []
+      },
+      "gridPos": { "h": 5, "w": 24, "x": 0, "y": 0 },
+      "id": 1,
+      "options": { "colorMode": "background", "graphMode": "none", "justifyMode": "center", "orientation": "horizontal", "reduceOptions": { "calcs": ["lastNotNull"], "fields": "", "values": false }, "textMode": "auto" },
+      "title": "Health (*_health)",
+      "type": "stat",
+      "targets": [
+        { "expr": "request_health", "legendFormat": "request", "refId": "A" },
+        { "expr": "workflow_health", "legendFormat": "workflow", "refId": "B" },
+        { "expr": "approval_health", "legendFormat": "approval", "refId": "C" },
+        { "expr": "notification_health", "legendFormat": "notification", "refId": "D" }
+      ]
+    },
+    {
+      "datasource": { "type": "prometheus", "uid": "prometheus" },
+      "fieldConfig": { "defaults": { "unit": "reqps" }, "overrides": [] },
+      "gridPos": { "h": 8, "w": 12, "x": 0, "y": 5 },
+      "id": 2,
+      "title": "HTTP (*_http)",
+      "type": "timeseries",
+      "targets": [
+        { "expr": "rate(request_http[1m])", "legendFormat": "request", "refId": "A" },
+        { "expr": "rate(workflow_http[1m])", "legendFormat": "workflow", "refId": "B" },
+        { "expr": "rate(approval_http[1m])", "legendFormat": "approval", "refId": "C" },
+        { "expr": "rate(notification_http[1m])", "legendFormat": "notification", "refId": "D" }
+      ]
+    },
+    {
+      "datasource": { "type": "prometheus", "uid": "prometheus" },
+      "fieldConfig": { "defaults": { "unit": "percent" }, "overrides": [] },
+      "gridPos": { "h": 8, "w": 12, "x": 12, "y": 5 },
+      "id": 3,
+      "title": "CPU (*_cpu)",
+      "type": "timeseries",
+      "targets": [
+        { "expr": "request_cpu", "legendFormat": "request", "refId": "A" },
+        { "expr": "workflow_cpu", "legendFormat": "workflow", "refId": "B" },
+        { "expr": "approval_cpu", "legendFormat": "approval", "refId": "C" },
+        { "expr": "notification_cpu", "legendFormat": "notification", "refId": "D" }
+      ]
+    },
+    {
+      "datasource": { "type": "prometheus", "uid": "prometheus" },
+      "fieldConfig": { "defaults": { "unit": "bytes" }, "overrides": [] },
+      "gridPos": { "h": 8, "w": 12, "x": 0, "y": 13 },
+      "id": 4,
+      "title": "Memory (*_mem)",
+      "type": "timeseries",
+      "targets": [
+        { "expr": "request_mem", "legendFormat": "request", "refId": "A" },
+        { "expr": "workflow_mem", "legendFormat": "workflow", "refId": "B" },
+        { "expr": "approval_mem", "legendFormat": "approval", "refId": "C" },
+        { "expr": "notification_mem", "legendFormat": "notification", "refId": "D" }
+      ]
+    },
+    {
+      "datasource": { "type": "prometheus", "uid": "prometheus" },
+      "fieldConfig": { "defaults": { "unit": "ops" }, "overrides": [] },
+      "gridPos": { "h": 8, "w": 12, "x": 12, "y": 13 },
+      "id": 5,
+      "title": "DB (*_db_read / *_db_write)",
+      "type": "timeseries",
+      "targets": [
+        { "expr": "rate(request_db_read[1m])", "legendFormat": "request read", "refId": "A" },
+        { "expr": "rate(request_db_write[1m])", "legendFormat": "request write", "refId": "B" },
+        { "expr": "rate(workflow_db_read[1m])", "legendFormat": "workflow read", "refId": "C" },
+        { "expr": "rate(workflow_db_write[1m])", "legendFormat": "workflow write", "refId": "D" },
+        { "expr": "rate(approval_db_read[1m])", "legendFormat": "approval read", "refId": "E" },
+        { "expr": "rate(approval_db_write[1m])", "legendFormat": "approval write", "refId": "F" },
+        { "expr": "rate(notification_db_read[1m])", "legendFormat": "notification read", "refId": "G" },
+        { "expr": "rate(notification_db_write[1m])", "legendFormat": "notification write", "refId": "H" }
+      ]
+    }
+  ],
+  "schemaVersion": 39,
+  "tags": ["provisioning"],
+  "templating": { "list": [] },
+  "time": { "from": "now-15m", "to": "now" },
+  "timezone": "browser",
+  "title": "Health / Load / CPU / Memory / DB",
+  "uid": "provisioning-metrics",
+  "version": 4
+}
